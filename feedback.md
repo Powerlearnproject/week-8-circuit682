@@ -46,7 +46,7 @@ These queries will help retrieve relevant data from the database to monitor and 
 Query 1: Retrieve all users
 
 Retrieving all user details from the Users table:
-SELECT \* FROM Users;
+/*SELECT \* FROM Users;*/
 
 Query 2: Retrieving all alcohol consumption records for a specific user
 

@@ -45,62 +45,56 @@ Schema design is build on sequelize and sample data is seeded.
 These queries will help retrieve relevant data from the database to monitor and evaluate the issue of alcohol consumption.
 Query 1: Retrieve all users
 
-Retrieve all user details from the Users table:
-\*SELECT \* FROM Users;\*
+Retrieving all user details from the Users table:
+SELECT \* FROM Users;
 
-Query 2: Retrieve all alcohol consumption records for a specific user
+Query 2: Retrieving all alcohol consumption records for a specific user
 
-Retrieve all alcohol consumption records for a particular user based on user_id:
-\*SELECT \* \*
+Retrieving all alcohol consumption records for a particular user based on user_id:
+SELECT \*
 FROM Alcohol_Consumptions
-WHERE user_id = 1; \*
+WHERE user_id = 1;
 
 Query 3: Retrieve goals for a user
 
-Fetch all goals that a user has set regarding alcohol consumption:
-\*SELECT \*
+Fetching all goals that a user has set regarding alcohol consumption:
+SELECT \*
 FROM Goals
-WHERE user_id = 1; \*
+WHERE user_id = 1;
 
-Query 4: Retrieve all self-assessments for a user
+Query 4: Retrieving all self-assessments for a user
 
 This query will retrieve all the self-assessments that a user has conducted:
-\*SELECT \*
+SELECT \*
 FROM Self_Assessments
-WHERE user_id = 1; \*
+WHERE user_id = 1;
 
-Query 5: Retrieve all consultations for a user
+Query 5: Retrieving all consultations for a user
 
-Fetch all consultations that a user has had, along with recommendations:
-\*SELECT \*
+Fetching all consultations that a user has had, along with recommendations:
+SELECT \*
 FROM Consultations
-WHERE user_id = 1; \*
+WHERE user_id = 1;
 
-Query 6: Retrieve resources related to alcohol consumption
+Query 6: Retrieving resources related to alcohol consumption
 
-Retrieve all available resources related to alcohol consumption awareness:
-\*SELECT \*
+Retrieving all available resources related to alcohol consumption awareness:
+SELECT \*
 FROM Resources
-WHERE title LIKE '%Alcohol%';\*
+WHERE title LIKE '%Alcohol%';
 
-Sure! Let's walk through the Data Retrieval and Data Analysis steps, aligned with your schema and SDG problem definition (alcohol consumption and its impact on health).
+## 1. Data Retrieval:
 
-1. Data Retrieval:
+These queries help retrieve relevant data from the database to monitor and evaluate the issue of alcohol consumption.
 
-These queries will help you retrieve relevant data from the database to monitor and evaluate the issue of alcohol consumption.
 Query 1: Retrieve all users
-
-Retrieve all user details from the Users table.
-
-sql
+Retrieving all user details from the Users table.
 
 SELECT \* FROM Users;
 
 Query 2: Retrieve all alcohol consumption records for a specific user
 
-Retrieve all alcohol consumption records for a particular user based on user_id.
-
-sql
+Retrieving all alcohol consumption records for a particular user based on user_id.
 
 SELECT \*
 FROM Alcohol_Consumptions
@@ -108,29 +102,23 @@ WHERE user_id = 1;
 
 Query 3: Retrieve goals for a user
 
-Fetch all goals that a user has set regarding alcohol consumption.
-
-sql
+Fetching all goals that a user has set regarding alcohol consumption.
 
 SELECT \*
 FROM Goals
 WHERE user_id = 1;
 
-Query 4: Retrieve all self-assessments for a user
+Query 4: Retrieving all self-assessments for a user
 
 This query will retrieve all the self-assessments that a user has conducted.
-
-sql
 
 SELECT \*
 FROM Self_Assessments
 WHERE user_id = 1;
 
-Query 5: Retrieve all consultations for a user
+Query 5: Retrieving all consultations for a user
 
-Fetch all consultations that a user has had, along with recommendations.
-
-sql
+Fetching all consultations that a user has had, along with recommendations.
 
 SELECT \*
 FROM Consultations
@@ -149,84 +137,64 @@ WHERE title LIKE '%Alcohol%';
 2. Data Analysis:
 
 These queries will help you analyze the data and generate insights regarding alcohol consumption, risks, and progress towards goals.
-Query 1: Analyze total alcohol consumption for each user
 
+Query 1: Analyzing total alcohol consumption for each user
 This query will calculate the total amount of alcohol consumed by each user:
-/_
+
 SELECT user_id, SUM(amount) AS total_consumption
 FROM Alcohol_Consumptions
 GROUP BY user_id;
-/_
 
-Query 2: Analyze average alcohol consumption per session for a user
-
+Query 2: Analyzing average alcohol consumption per session for a user:
 This query will calculate the average amount of alcohol consumed per session for a particular user:
-/_
+
 SELECT AVG(amount) AS average_consumption
 FROM Alcohol_Consumptions
 WHERE user_id = 1;
-/_
 
-Query 3: Analyze the number of high-risk users based on self-assessments
-
+Query 3: Analyzing the number of high-risk users based on self-assessments:
 This query will count how many users have been flagged as "High" risk in their self-assessments.
 
-/_
 SELECT COUNT(DISTINCT user_id) AS high_risk_users
 FROM Self_Assessments
 WHERE risk_level = 'High';
-/_
 
-Query 4: Analyze progress of users toward their goals
-
+Query 4: Analyzing progress of users toward their goals:
 This query will give you an overview of how many users have completed their goals and how many are still in progress or have not started.
 
-/_
-SELECT status, COUNT(_) AS user_count
+SELECT status, COUNT(\_) AS user_count
 FROM Goals
 GROUP BY status;
-/\*
 
-Query 5: Retrieve users who have consulted with providers and their recommendations
-
+Query 5: Retrieve users who have consulted with providers and their recommendations:
 This query will show users who have had consultations along with the recommendations given by the provider.
 
-/_SELECT u.name, c.date, c.provider_name, c.recommendations
+SELECT u.name, c.date, c.provider_name, c.recommendations
 FROM Users u
 JOIN Consultations c ON u.user_id = c.user_id;
-/_
 
-Query 6: Analyze consumption context to determine the most common context for drinking
-
+Query 6: Analyzing consumption context to determine the most common context for drinking
 This query will help identify in what context people are most likely to consume alcohol.
 
-/_
-SELECT context, COUNT(_) AS context_count
+SELECT context, COUNT(\_) AS context_count
 FROM Alcohol_Consumptions
 GROUP BY context
 ORDER BY context_count DESC;
-/\*
 
-Query 7: Aggregate assessment scores and analyze trends
-
+Query 7: Aggregate assessment scores and analyze trends:
 This query will aggregate the scores from the self-assessments and group them by users to observe trends.
 
-/_
 SELECT user_id, SUM(scores) AS total_scores
 FROM Self_Assessments
 GROUP BY user_id;
-/_
 
-Query 8: Analyze the distribution of users based on age and risk level
-
+Query 8: Analyze the distribution of users based on age and risk level:
 This query will help analyze the relationship between users' age and their alcohol risk level.
 
-/_
-SELECT u.age, sa.risk_level, COUNT(_) AS count
+SELECT u.age, sa.risk*level, COUNT(*) AS count
 FROM Users u
 JOIN Self_Assessments sa ON u.user_id = sa.user_id
 GROUP BY u.age, sa.risk_level;
-/\*
 
 # Data Analysis Using Excel:
 

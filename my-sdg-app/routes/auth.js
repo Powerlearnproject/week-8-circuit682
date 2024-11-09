@@ -8,17 +8,22 @@ const jwt = require('jsonwebtoken'); // For JWT authentication
 // Register route
 router.post('/register', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await Users.create({
       username,
+      email,
       password: hashedPassword,
     });
+
     res.status(201).json({ message: 'User registered successfully', user });
   } catch (error) {
+    console.error('Error during registration:', error);
     res.status(500).json({ error: 'Failed to register user' });
   }
 });
+
 
 // Login route
 router.post('/login', async (req, res) => {

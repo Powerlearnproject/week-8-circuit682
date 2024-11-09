@@ -7,12 +7,16 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    flex-direction: column; /* Allows content to be stacked vertically */
 }
 
+/* Title styling */
 h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem; /* Increased margin to create space above the form */
+    margin-top: 0; /* Optional: Adjust if needed */
+    font-size: 1.5rem; /* Optional: Adjust font size for better proportion */
 }
 
 /* Form container */

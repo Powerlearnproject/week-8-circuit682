@@ -102,4 +102,20 @@ async function fetchDashboardData() {
 //     console.log('Login Result:', result);
 // };
 
-// Add similar event listeners or function calls for other actions, such as registration, goal creation, etc.
+//  similar event listeners or function calls for other actions
+// Registration form submission event
+document.getElementById('registerForm').onsubmit = async (event) => {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    const result = await registerUser({ username, email, password });
+    console.log('Registration Result:', result);
+    if (result) {
+        alert("Registration successful!");
+    } else {
+        alert("Registration failed. Please try again.");
+    }
+};
+

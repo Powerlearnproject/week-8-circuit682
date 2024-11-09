@@ -1,4 +1,7 @@
-require('dotenv').config(); // Load the environment variables from .env
+// require('dotenv').config(); // Load the environment variables from .env
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
 
 module.exports = {
   development: {
@@ -26,3 +29,5 @@ module.exports = {
     port: process.env.DB_PORT || 3306
   }
 };
+
+console.log(process.env.DB_USER, process.env.DB_PASSWORD)

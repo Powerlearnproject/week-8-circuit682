@@ -27,10 +27,14 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Route for the home page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
 // Import route files
 const userRoutes = require('./routes/user');
 const goalRoutes = require('./routes/goals');
-const supportRoutes = require('./routes/support');
 const alcoholConsumptionRoutes = require('./routes/alcohol_consumption');
 const consultationRoutes = require('./routes/consultations');
 const resourceRoutes = require('./routes/resources');

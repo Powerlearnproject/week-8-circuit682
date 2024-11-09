@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Alcohol_Consumption } = require('../models/alcohol_consumption');
+const { Alcohol_Consumption } = require('../models');
 
 // Get all alcohol consumption records
 router.get('/', async (req, res) => {

@@ -1,7 +1,7 @@
 // routes/auth.js
 const express = require('express');
 const router = express.Router();
-const { Users } = require('../models/user'); // Assuming Users model is in models/user.js
+const { Users } = require('../models'); // Assuming Users model is in models/user.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // For JWT authentication
 

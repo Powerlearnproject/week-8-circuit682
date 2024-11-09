@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Self_Assessment } = require('../models/self_assessment');
+const { Self_Assessment } = require('../models');
 
 // Get all self assessments
 router.get('/', async (req, res) => {
